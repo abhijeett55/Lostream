@@ -1,4 +1,6 @@
 #pragma once
+#ifndef CALLOCATOR_HPP
+#define CALLOCATOR_HPP
 
 #include "Allocator.hpp"
 
@@ -16,3 +18,4 @@ public:
 };
 
 
+#endif

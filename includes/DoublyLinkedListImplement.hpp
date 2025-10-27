@@ -1,11 +1,11 @@
 #pragma once
-
+#ifndef DOUBLYLINKEDLISTIMPLEMENT_HPP
+#define DOUBLYLINKEDLISTIMPLEMENT_HPP
 template <class T>
-
 DoublyLinkedList<T>::DoublyLinkedList() {}
 
-template <class T>
 
+template <class T>
 void DoublyLinkedList<T>::insert(Node *previousNode, Node *newNode) {
     if (previousNode == nullptr) {
         if (head != nullptr) {
@@ -48,4 +48,6 @@ void DoublyLinkedList<T>::remove(Node *deleteNode) {
     }
 
     delete deleteNode;
-} 
+}
+
+#endif

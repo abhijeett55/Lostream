@@ -45,14 +45,17 @@ void *StackAllocator::Allocate(const std::size_t size, const std::size_t alignmn
 
     AllocationHeader allocationHeader(padding);
     AllocationHeader * headerPtr = (AllocationHeader* )headerAddress;
-    headerPtr = &allocationHeader;
+    *headerPtr = allocationHeader;
 
 
     m_offset += size;
 
 
     #ifdef _DEBUG
-    std::cout<<"A"<<"\t@c " <<(void*) currentAddress <<"\t@R " << (void* )nextAddress << "\tO " << m_offset <<"\tP" << padding << std::endl;
+    std::cout<<"A"<<"\t@c " <<(void*) currentAddress 
+    <<"\t@R " << (void* )nextAddress 
+    << "\tO " << m_offset
+     <<"\tP" << padding << std::endl;
     #endif 
 
     m_used = m_offset;
@@ -74,8 +77,7 @@ void StackAllocator::Free(void *ptr) {
 
 
     #ifdef _DEBUG
-    std::cout<<"F" << "\t@c "<<(void*) currentAddress << "\t@F " <<(void* )((char*) m_start_ptr + m_offset) << "\tO " <<m_offset << std::endl;
-
+    std::cout<<"F" << "\t@c "<<(void*) currentAddress << "\t@F " <<(void* )((char*) m_start_ptr + m_offset) << "\tO " <<m_offset << std::endl; 
     #endif
 }
 

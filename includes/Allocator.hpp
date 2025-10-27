@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ALLOCATOR_HPP
+#define ALLOCATOR_HPP
 
 #include <cstddef>
 
@@ -23,4 +25,7 @@ public:
     virtual void Init() = 0;
 
     friend class Benchmark;
+    
 };
+
+#endif

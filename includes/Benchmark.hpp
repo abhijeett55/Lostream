@@ -1,4 +1,6 @@
 #pragma once
+#ifndef BENCHMARK_HPP
+#define BENCHMARK_HPP
 
 #include <time.h>
 #include <cstddef>
@@ -15,12 +17,13 @@
 #define OPERATIONS (10)
 #endif 
 
-struct BenchmarkResults {
+struct BenchmarkResults 
+{
     std::size_t Operations;
     std::chrono::milliseconds Milliseconds;
     double OperationsPerSec;
     double TimePerOperation;
-    std::size_t Memory_peak;
+    std::size_t MemoryPeak;
 };
 
 
@@ -45,7 +48,7 @@ public:
 private:
     void PrintResults(const BenchmarkResults& results) const;
 
-    void RandomAllocationAttr(const std::vector<std::size_t>& allocationSizes, const std::vector<std::size_t>& alignment, std::size_t & size, std::size_t & alignment);
+    void RandomAllocationAttr(const std::vector<std::size_t>& allocationSizes, const std::vector<std::size_t>& alignments, std::size_t & size, std::size_t & alignment);
 
     const BenchmarkResults buildResults(std::size_t nOperations, std::chrono::milliseconds && ellapsedTime, const std::size_t memmoryUsed) const;
 
@@ -75,3 +78,4 @@ private:
 };
 
 
+#endif

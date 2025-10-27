@@ -57,7 +57,7 @@ void Benchmark::SingleFree(Allocator* allocator, count std::size_t size, const s
 }
 
 
-void Benchmark::MultipleAllocation(Allocator* allocator, const std::vector<std::size_t>& allocationSizes, const std::vector<std::size_t<& alignments ) {
+void Benchmark::MultipleAllocation(Allocator* allocator, const std::vector<std::size_t>& allocationSizes, const std::vector<std::size_t>& alignments) {
     assert(allocationSizes.size() == alignments.size() && "Allocation sizes and alignments must have same length");
 
     for(auto i = 0u; i < allocationSizes.size() ; ++i) {

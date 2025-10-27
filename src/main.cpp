@@ -2,13 +2,13 @@
 #include <cstddef>
 #include <vector>
 
-#include "Benchmark.h"
-#include "Allocator.h"
-#include "StackAllocator.h"
-#include "CAllocator.h"
-#include "LinearAllocator.h"
-#include "PoolAllocator.h"
-#include "FreeListAllocator.h"
+#include "Benchmark.hpp"
+#include "Allocator.hpp"
+#include "StackAllocator.hpp"
+#include "CAllocator.hpp"
+#include "LinearAllocator.hpp"
+#include "PoolAllocator.hpp"
+#include "FreeListAllocator.hpp"
 
 int main() {
     const std::size_t A = static_cast<std::size_t>(1e9);
@@ -51,7 +51,7 @@ int main() {
 
     std::cout<< "Free LIST" << std::endl;
     benchmark.MultipleAllocation(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
-    benchmark.MutipleFree(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
+    benchmark.MultipleFree(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
     benchmark.RandomAllocation(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
     benchmark.RandomFree(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
 

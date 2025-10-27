@@ -1,4 +1,6 @@
 #pragma once
+#ifndef STACKLINKEDLIST_HPP
+#define STACKLINKEDLIST_HPP
 
 template <class T>
 
@@ -19,3 +21,5 @@ public:
 };
 
 #include "StackLinkedListImplement.hpp"
+
+#endif

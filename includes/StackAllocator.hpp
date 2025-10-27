@@ -1,4 +1,6 @@
 #pragma once
+#ifndef STACKALLOCATOR_HPP
+#define STACKALLOCATOR_HPP
 
 #include "Allocator.hpp"
 
@@ -29,3 +31,5 @@ private:
         char padding;
     };
 };
+
+#endif

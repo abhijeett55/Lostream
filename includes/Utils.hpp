@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef UTILS_HPP
+#define UTILS_HPP
+
 class Utils {
 public: 
     static const std::size_t CalculatePadding(const std::size_t baseAddress, const std::size_t alignment) {
@@ -32,4 +35,4 @@ public:
 };
 
 
-
+#endif

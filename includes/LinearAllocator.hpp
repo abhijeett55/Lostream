@@ -1,5 +1,6 @@
 #pragma once
-
+#ifndef LINEARALLOCATOR_HPP
+#define LINEARALLOCATOR_HPP
 #include "Allocator.hpp"
 
 class LinearAllocator : public Allocator {
@@ -24,3 +25,5 @@ public:
 private:
     LinearAllocator(LinearAllocator &linearAllocator);
 };
+
+#endif

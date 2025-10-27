@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SINGLYLINKEDLIST_HPP
+#define SINGLYLINKEDLIST_HPP
 
 template <class T>
 class SinglyLinkedList {
@@ -19,3 +21,5 @@ public:
 };
 
 #include "SinglyLinkedListImplement.hpp"
+
+#endif

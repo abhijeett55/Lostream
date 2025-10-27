@@ -1,4 +1,6 @@
 #pragma once
+#ifndef POOLALLOCATOR_HPP
+#define POOLALLOCATOR_HPP
 
 #include "Allocator.hpp"
 #include "StackLinkedList.hpp"
@@ -34,3 +36,5 @@ private:
     PoolAllocator(PoolAllocator &poolAllocator);
 
 };
+
+#endif

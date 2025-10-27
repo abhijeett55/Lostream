@@ -1,12 +1,14 @@
 #pragma once
+#ifndef DOUBLYLINKEDLIST_HPP
+#define DOUBLYLINKEDLIST_HPP
 
 template <class T>
 class DoublyLinkedList {
 public:
     struct Node {
         T data;
-        Node *previous;
-        Node *next;
+        Node*p revious;
+        Node* next;
     };
     Node *head;
 
@@ -20,4 +22,8 @@ private:
     DoublyLinkedList(DoublyLinkedList &doublyLinekdList);
 };
 
+
+
 #include "DoublyLinkedListImplement.hpp"
+
+#endif

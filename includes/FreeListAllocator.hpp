@@ -1,4 +1,8 @@
-#pragma once 
+ #pragma once
+#ifndef FREELISTALLOCATOR_HPP
+#define FREELISTALLOCATOR_HPP 
+
+#include <cstddef>
 #include "Allocator.hpp"
 #include "SinglyLinkedList.hpp"
 class FreeListALlocator : public Allocator {
@@ -20,7 +24,7 @@ private:
     };
 
 
-    typedef SinglyLinkedList<FreeHeader>::Node Node;
+    typedef typename SinglyLinkedList<FreeHeader>::Node Node;
 
     void *m_start_ptr = nullptr;
     PlacementPolicy m_pPolicy;
@@ -49,3 +53,5 @@ private:
     void FindBest(const std::size_t size, const std::size_t alignment, std::size_t& padding , Node*& previousNode, Node*& foundNode);
     void FindFirst(const std::size_t size, const std::size_t alignment , std::size_t& padding, Node*& previousNode, Node*& foundNode);
 };
+
+#endif
