@@ -144,10 +144,8 @@ cmake --build build
 # Run benchmarks
 ./build/Debug/main.exe
 
-
+```
 ---
-
-
 
 ## Key Insights from Your Data:
 
