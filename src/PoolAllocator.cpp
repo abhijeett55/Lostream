@@ -1,13 +1,15 @@
 #include "PoolAllocator.hpp"
 #include <cassert>
-#include <stdlib.h>
+#include <cstdint>
+#include <cstdlib>
 #include <algorithm>
 #ifdef _DEBUG
 #include <iostream>
 #endif
 
 
-PoolAllocator::PoolAllocator(const std::size_t totalSize, const std::size_t chunkSize) : PoolAllocator(totalSize)  {
+PoolAllocator::PoolAllocator(const std::size_t totalSize, const std::size_t chunkSize) : 
+ Allocator(totalSize)  {
     assert(chunkSize >= 8 && "Chunk size must be greater or equal to 8");
     assert(totalSize % chunkSize == 0 && "Total Sized must be a multiple of Chunk size");
     this->m_chunkSize  = chunkSize;
@@ -54,11 +56,11 @@ void PoolAllocator::Free(void* ptr) {
 
 void PoolAllocator::Reset() {
     m_used = 0;
-    m_peak = 0
+    m_peak = 0;
 
-    const int nChunks = m_totalSize / m_chunkSize;
+    const size_t nChunks = m_totalSize / m_chunkSize;
     for(int i= 0; i < nChunks; i++) {
         std::size_t address = (std::size_t ) m_start_ptr + i * m_chunkSize;
-        m_freeList.push(Node *) address;
+        m_freeList.push((Node *) address);
     }
 }

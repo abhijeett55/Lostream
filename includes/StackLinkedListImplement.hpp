@@ -1,6 +1,5 @@
 #pragma once 
-#ifndef STACKLINKEDLISTIMPLEMENT_HPP
-#define STACKLINKEDLISTIMPLEMENT_HPP
+
 template <class T>
 void StackLinkedList<T>::push(Node *newNode) {
     newNode->next = head;
@@ -9,11 +8,9 @@ void StackLinkedList<T>::push(Node *newNode) {
 
 template<class T>
 typename StackLinkedList<T>::Node* StackLinkedList<T>::pop() {
-    if(!head) return;
-    Node *top = head;
+    Node * top = head;
     head = head->next;
-    top->next = nullptr;
+    return top;
 }
 
-#endif
 

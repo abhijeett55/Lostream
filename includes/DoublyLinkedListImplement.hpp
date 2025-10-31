@@ -1,6 +1,5 @@
 #pragma once
-#ifndef DOUBLYLINKEDLISTIMPLEMENT_HPP
-#define DOUBLYLINKEDLISTIMPLEMENT_HPP
+
 template <class T>
 DoublyLinkedList<T>::DoublyLinkedList() {}
 
@@ -50,4 +49,3 @@ void DoublyLinkedList<T>::remove(Node *deleteNode) {
     delete deleteNode;
 }
 
-#endif

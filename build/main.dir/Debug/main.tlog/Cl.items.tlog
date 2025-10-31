@@ -1,0 +1,8 @@
+C:\Users\abhii\Lostream\src\Allocator.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\Allocator.obj
+C:\Users\abhii\Lostream\src\CAllocator.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\CAllocator.obj
+C:\Users\abhii\Lostream\src\LinearAllocator.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\LinearAllocator.obj
+C:\Users\abhii\Lostream\src\StackAllocator.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\StackAllocator.obj
+C:\Users\abhii\Lostream\src\PoolAllocator.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\PoolAllocator.obj
+C:\Users\abhii\Lostream\src\FreeListAllocator.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\FreeListAllocator.obj
+C:\Users\abhii\Lostream\src\Benchmark.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\Benchmark.obj
+C:\Users\abhii\Lostream\src\main.cpp;C:\Users\abhii\Lostream\build\main.dir\Debug\main.obj

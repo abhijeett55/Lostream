@@ -2,7 +2,7 @@
 #ifndef BENCHMARK_HPP
 #define BENCHMARK_HPP
 
-#include <time.h>
+#include <ctime>
 #include <cstddef>
 #include <chrono>
 #include <ratio>
@@ -60,6 +60,7 @@ private:
     void SetElapsedTime() noexcept { TimeElapsed = std::chrono::duration_cast<std::chrono::milliseconds>(Finish - Start); }
 
     void StartRound() noexcept { SetStartTime(); }
+    
 
 
     void FinishRound() noexcept {

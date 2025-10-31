@@ -21,7 +21,7 @@ int main() {
     Allocator * linearAllocator = new LinearAllocator(A);
     Allocator * stackAllocator = new StackAllocator(A);
     Allocator * poolAllocator = new PoolAllocator(16777216, 4096);
-    Allocator * freeListAllOcator = new FreeListAllocator(B, FreeListAllocator::PlacementPolicy::FIND_FIRST);
+    Allocator * freeListAllocator = new FreeListAllocator(B, FreeListAllocator::PlacementPolicy::FIND_FIRST);
 
     Benchmark benchmark(OPERATIONS);
 
@@ -37,7 +37,7 @@ int main() {
     benchmark.RandomAllocation(linearAllocator, ALLOCATION_SIZES, ALIGNMENTS);
 
 
-    stc::cout<< "STACK" <<std::endl;
+    std::cout<< "STACK" <<std::endl;
 
     benchmark.MultipleAllocation(stackAllocator, ALLOCATION_SIZES, ALIGNMENTS);
     benchmark.MultipleFree(stackAllocator, ALLOCATION_SIZES, ALIGNMENTS);

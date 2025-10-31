@@ -7,7 +7,8 @@
 #endif
 
 
-StackAllocator::StackAllocator(const std::size_t totalSize) : Allocator(totalSize) {
+StackAllocator::StackAllocator(const std::size_t totalSize) 
+: Allocator(totalSize) {
 
 }
 
@@ -43,20 +44,20 @@ void *StackAllocator::Allocate(const std::size_t size, const std::size_t alignmn
     const std::size_t nextAddress = currentAddress + padding;
     const std::size_t headerAddress = nextAddress - sizeof(AllocationHeader);
 
-    AllocationHeader allocationHeader(padding);
+    AllocationHeader allocationHeader{padding};
     AllocationHeader * headerPtr = (AllocationHeader* )headerAddress;
-    *headerPtr = allocationHeader;
+    headerPtr = &allocationHeader;
 
 
     m_offset += size;
 
 
-    #ifdef _DEBUG
+#ifdef _DEBUG
     std::cout<<"A"<<"\t@c " <<(void*) currentAddress 
     <<"\t@R " << (void* )nextAddress 
     << "\tO " << m_offset
      <<"\tP" << padding << std::endl;
-    #endif 
+#endif 
 
     m_used = m_offset;
     m_peak = std::max(m_peak, m_used);
@@ -69,7 +70,7 @@ void *StackAllocator::Allocate(const std::size_t size, const std::size_t alignmn
 void StackAllocator::Free(void *ptr) {
     const std::size_t currentAddress = (std::size_t) ptr;
     const std::size_t headerAddress = currentAddress - sizeof (AllocationHeader);
-    const AllocationHeader * allocationHeader (AllocationHeader *)headerAddress;
+    const AllocationHeader * allocationHeader { (AllocationHeader *)headerAddress };
 
 
     m_offset = currentAddress - allocationHeader->padding - (std::size_t) m_start_ptr;

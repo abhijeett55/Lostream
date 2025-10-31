@@ -1,6 +1,6 @@
 #include "Benchmark.hpp"
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <cassert>
 
 void Benchmark::SingleAllocation(Allocator *allocator, const std::size_t size, std::size_t alignment) {
@@ -27,7 +27,7 @@ void Benchmark::SingleAllocation(Allocator *allocator, const std::size_t size, s
 }
 
 
-void Benchmark::SingleFree(Allocator* allocator, count std::size_t size, const std::size_t size, const std::size_t alignment) {
+void Benchmark::SingleFree(Allocator* allocator, const std::size_t size, const std::size_t alignment) {
     std::cout<<"Benchmark: ALLOCATION/FREE" << IO::endl;
     std::cout<<"\tSize:      \t" << size << IO::endl;
     std::cout<<"\tAlignment\t" << alignment << IO::endl;
@@ -48,7 +48,7 @@ void Benchmark::SingleFree(Allocator* allocator, count std::size_t size, const s
 
 
     while(operations) {
-        allocate->Free(addresses[--operations]);
+        allocator->Free(addresses[--operations]);
     }
 
     FinishRound();
@@ -70,7 +70,7 @@ void Benchmark::MultipleFree(Allocator* allocator, const std::vector<std::size_t
   assert(allocationSizes.size() == alignments.size() && "Allocation sizes and Alignments must have same length");
 
   for (auto i = 0u; i < allocationSizes.size(); i++) {
-    singleFree(allocator, allocationSizes[i], alignments[i]);
+    SingleFree(allocator, allocationSizes[i], alignments[i]);
   }
 }
 
@@ -139,15 +139,15 @@ void Benchmark::PrintResults(const BenchmarkResults& results) const {
   std::cout<< "\t\tOperations:     \t" << results.Operations <<IO::endl;
   std::cout<< "\t\t Time elapsed:  \t" << results.Milliseconds.count() << " ms" << IO::endl;
   std::cout<< "\t\t Op per sec:    \t" << results.OperationsPerSec << " ops/ms" << IO::endl;
-  std::cout<< "\t\t Timer per op:  \t" << results.TimePerOperations << " ms/ops" << IO::endl;
+  std::cout<< "\t\t Timer per op:  \t" << results.TimePerOperation << " ms/ops" << IO::endl;
   std::cout<< "\t\t Memory Peak:   \t" <<results.MemoryPeak << " bytes" << IO::endl;
 
-  std:cout<< IO::endl; 
+  std::cout<< IO::endl; 
 }
 
 
-const BenchmarkResults Benchmark::buildResults(std::size_t nOperations, std::chrono::milliseconds && elapsedTime, const std::size_t MemmoryPeak) const {
-  Benchmark results;
+const BenchmarkResults Benchmark::buildResults(std::size_t nOperations, std::chrono::milliseconds&& elapsedTime, const std::size_t memoryPeak) const {
+  BenchmarkResults results;
 
   results.Operations = nOperations;
   results.Milliseconds = std::move(elapsedTime);
@@ -160,5 +160,5 @@ const BenchmarkResults Benchmark::buildResults(std::size_t nOperations, std::chr
 void Benchmark::RandomAllocationAttr(const std::vector<std::size_t>& allocationSizes, const std::vector<std::size_t>& alignments, std::size_t & size, std::size_t & alignment) {
   const int r = rand() % allocationSizes.size();
   size= allocationSizes[r];
-  alignment = alignment[r];
+  alignment = alignments[r];
 }

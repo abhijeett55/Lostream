@@ -1,6 +1,5 @@
 #pragma once
-#ifndef SINGLYLINKEDLISTIMPLEMENT_HPP
-#define SINGLYLINKEDLISTIMPLEMENT_HPP
+
 
 template<class T>
 SinglyLinkedList<T>::SinglyLinkedList() : head(nullptr) {}
@@ -26,5 +25,3 @@ void SinglyLinkedList<T>::remove(Node* previousNode, Node* deleteNode) {
     }
     delete deleteNode;
 }
-
-#endif

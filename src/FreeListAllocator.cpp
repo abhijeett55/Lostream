@@ -1,8 +1,8 @@
 #include "FreeListAllocator.hpp"
 #include "Utils.hpp"
-#include <stdlib.h>
+#include <cstdlib>
 #include <cassert>
-#include <limits>
+#include <climits>
 #include <algorithm>
 
 
@@ -10,7 +10,8 @@
 #include <iostream>
 #endif
 
-FreeListAllocator::FreeListAllocator(const std::size_t totalSize, const PlacementPolicy pPolicy) : Allocator(totalSize) {
+FreeListAllocator::FreeListAllocator(const std::size_t totalSize, const PlacementPolicy pPolicy) 
+: Allocator(totalSize) {
     m_pPolicy = pPolicy;
 }
 
@@ -32,7 +33,7 @@ FreeListAllocator::~FreeListAllocator() {
 }
 
 
-void* FreeListAllocator::Allocate(const std::size_t, const std::size_t alignment) {
+void* FreeListAllocator::Allocate(const std::size_t size, const std::size_t alignment) {
     const std::size_t allocationHeaderSize = sizeof(FreeListAllocator::AllocationHeader);
     const std::size_t freeHeaderSize = sizeof(FreeListAllocator::FreeHeader);
     assert("Allocation sized must be bigger" && size >= sizeof(Node));
@@ -59,14 +60,14 @@ void* FreeListAllocator::Allocate(const std::size_t, const std::size_t alignment
 
     const std::size_t headerAddress = (std::size_t) affectedNode + alignmentPadding;
     const std::size_t dataAddress = headerAddress + allocationHeaderSize;
-    ((FreeListAllocator::AllocationHeader *) headerAddress)-> blockSize = requiredSize;
-    ((FreeListAllocator::AllocationHeader *) headerAddress)-> padding = alignmentPadding;
+    ((FreeListAllocator::AllocationHeader *) headerAddress)->blockSize = requiredSize;
+    ((FreeListAllocator::AllocationHeader *) headerAddress)->padding = alignmentPadding;
 
     m_used += requiredSize;
     m_peak = std::max(m_peak, m_used);
 
     #ifdef _DEBUG
-    std::cout << "A" <<"\t@H" << (void*) headerAddress << "\tD@" << (void*) dataAddress <<<"\tS" <<((FreeListAllocator::AllocationHeader * ) headerAddress)-> blockSize << "\tAP" << alignmentPadding << "\tP " <<padding << "\tM " << m_used << "\tR " <<rest << std::endl;
+    std::cout << "A" <<"\t@H" << (void*) headerAddress << "\tD@ " << (void*) dataAddress <<"\tS " << ((FreeListAllocator::AllocationHeader * ) headerAddress)-> blockSize << "\tAP " << alignmentPadding << "\tP " <<padding << "\tM " << m_used << "\tR " << rest << std::endl;
     #endif
 
     return  (void* ) dataAddress;
@@ -84,7 +85,7 @@ void FreeListAllocator::Find(const std::size_t size, const std::size_t alignment
     }
 }
 
-void FreeListAllocator::FindFirst(const std::size_t size, const std::size_t alignment, std::size_t padding, Node *& previousNode, Node *& foundNode) {
+void FreeListAllocator::FindFirst(const std::size_t size, const std::size_t alignment, std::size_t& padding, Node *& previousNode, Node *& foundNode) {
     Node* it = m_freeList.head;
     Node* itPrev = nullptr;
 
@@ -111,7 +112,7 @@ void FreeListAllocator::FindBest(const std::size_t size, const std::size_t align
         padding = Utils::CalculatePaddingWithHeader((std::size_t)it , alignment, sizeof (FreeListAllocator::AllocationHeader));
 
         const std::size_t requiredSpace = size + padding;
-        if(it-> data.blockSize >= requiredSpace && (it->data.blockSize - requireSize < smallestDiff)) {
+        if(it-> data.blockSize >= requiredSpace && (it->data.blockSize - requiredSpace < smallestDiff)) {
             bestBlock = it;
         }
 
